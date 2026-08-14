@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #74b9ff;
+  --color-secondary: #81ecec;
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+}
+
+/* Global Base Styles */
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc; /* Tailwind bg-slate-50 */
+  color: #0f172a; /* Tailwind text-slate-900 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
