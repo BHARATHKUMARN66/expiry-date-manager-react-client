@@ -5,6 +5,19 @@
   --color-secondary: #81ecec;
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Outfit', sans-serif;
+  
+  --animate-scanner-laser: scanner-laser 2.2s ease-in-out infinite;
+
+  @keyframes scanner-laser {
+    0%, 100% {
+      transform: translateY(-45px);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(45px);
+      opacity: 1;
+    }
+  }
 }
 
 /* Global Base Styles */
