@@ -75,6 +75,21 @@ const getExpiryDetails = (expiryDateStr) => {
   return { color, status, progress, diffDays };
 };
 
+const getCategoryStyles = (category) => {
+  switch (category) {
+    case 'Fridge':
+      return 'bg-blue-50/70 text-blue-600 border-blue-100/50';
+    case 'Pantry':
+      return 'bg-amber-50/70 text-amber-700 border-amber-100/50';
+    case 'Freezer':
+      return 'bg-sky-50/70 text-sky-600 border-sky-100/50';
+    case 'Medicine':
+      return 'bg-purple-50/70 text-purple-600 border-purple-100/50';
+    default:
+      return 'bg-slate-50 text-slate-500 border-slate-200/60';
+  }
+};
+
 function App() {
   // Authentication State
   const [currentUser, setCurrentUser] = useState(() => {
@@ -353,10 +368,10 @@ function App() {
         };
         
         const config = { 
-          fps: 15, 
+          fps: 20, 
           qrbox: (width, height) => {
-            const boxWidth = Math.min(width * 0.8, 300);
-            const boxHeight = Math.min(height * 0.4, 150);
+            const boxWidth = Math.min(width * 0.85, 380);
+            const boxHeight = Math.min(height * 0.45, 180);
             return { width: boxWidth, height: boxHeight };
           }
         };
@@ -649,17 +664,17 @@ function App() {
 
           {/* STATISTICS STATS OVERVIEW */}
           <div className="grid grid-cols-3 gap-3 sm:gap-6">
-            <div className="bg-white border border-slate-100 p-4 rounded-xl shadow-sm text-center">
+            <div className="bg-slate-50/50 border border-slate-100 p-4 rounded-xl shadow-sm text-center">
               <span className="text-xl sm:text-2xl font-black text-slate-900">{totalItems}</span>
               <p className="text-[10px] text-slate-400 font-bold mt-0.5 uppercase tracking-wider">Total Items</p>
             </div>
-            <div className="bg-white border border-slate-150 p-4 rounded-xl shadow-sm text-center border-rose-100">
-              <span className="text-xl sm:text-2xl font-black text-rose-500">{criticalCount}</span>
-              <p className="text-[10px] text-slate-400 font-bold mt-0.5 uppercase tracking-wider">Urgent (≤1d)</p>
+            <div className="bg-rose-50/20 border border-rose-100/70 p-4 rounded-xl shadow-sm text-center">
+              <span className="text-xl sm:text-2xl font-black text-rose-600">{criticalCount}</span>
+              <p className="text-[10px] text-rose-500/80 font-bold mt-0.5 uppercase tracking-wider">Urgent (≤1d)</p>
             </div>
-            <div className="bg-white border border-slate-150 p-4 rounded-xl shadow-sm text-center border-amber-100">
+            <div className="bg-amber-50/20 border border-amber-100/70 p-4 rounded-xl shadow-sm text-center">
               <span className="text-xl sm:text-2xl font-black text-amber-600">{warningCount}</span>
-              <p className="text-[10px] text-slate-400 font-bold mt-0.5 uppercase tracking-wider">Warning (≤5d)</p>
+              <p className="text-[10px] text-amber-600/80 font-bold mt-0.5 uppercase tracking-wider">Warning (≤5d)</p>
             </div>
           </div>
 
@@ -799,7 +814,7 @@ function App() {
                         <div className="flex-1 space-y-2">
                           <div className="flex flex-wrap items-center gap-2">
                             <h4 className="font-bold text-slate-800 text-sm">{item.title}</h4>
-                            <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-slate-200/70 text-slate-500 uppercase tracking-wide">
+                            <span className={`text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wide border ${getCategoryStyles(item.category)}`}>
                               {item.category}
                             </span>
                             {item.amount && (
@@ -1204,7 +1219,7 @@ function App() {
         {showScanner && (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
             <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-md" onClick={stopScanner}></div>
-            <div className="bg-white border border-slate-100 rounded-2xl p-6 w-full max-w-sm shadow-2xl relative z-10 text-center space-y-4 animate-in fade-in zoom-in-95 duration-150">
+            <div className="bg-white border border-slate-100 rounded-2xl p-6 w-full max-w-lg shadow-2xl relative z-10 text-center space-y-4 animate-in fade-in zoom-in-95 duration-150">
               
               <div className="space-y-1">
                 <h3 className="text-sm font-extrabold text-slate-900 font-display">📷 Barcode Scanner</h3>
@@ -1212,7 +1227,7 @@ function App() {
               </div>
 
               {/* Viewport Frame */}
-              <div className="relative border-4 border-slate-900 rounded-2xl overflow-hidden bg-slate-950 aspect-video flex items-center justify-center">
+              <div className="relative border-4 border-slate-900 rounded-2xl overflow-hidden bg-slate-950 aspect-[4/3] flex items-center justify-center">
                 {scannerLoading && (
                   <div className="absolute inset-0 z-20 bg-slate-950 flex flex-col items-center justify-center gap-1 text-white">
                     <div className="animate-spin rounded-full h-6 w-6 border-2 border-blue-500 border-t-transparent"></div>

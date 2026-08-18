@@ -10,11 +10,11 @@
 
   @keyframes scanner-laser {
     0%, 100% {
-      transform: translateY(-45px);
+      transform: translateY(-70px);
       opacity: 0.3;
     }
     50% {
-      transform: translateY(45px);
+      transform: translateY(70px);
       opacity: 1;
     }
   }
