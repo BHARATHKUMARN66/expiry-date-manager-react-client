@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Html5Qrcode } from 'html5-qrcode'
 
-const API_URL = 'http://localhost:5001';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
 // API Fetch Helper with Credentials
 const apiFetch = async (path, options = {}) => {
