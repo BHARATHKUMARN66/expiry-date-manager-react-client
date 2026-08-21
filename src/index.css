@@ -1,12 +1,111 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Brand Teal primary colors */
+  --color-primary: #0D9488;
+  --color-primary-hover: #0F766E;
+  --color-primary-active: #115E59;
+  --color-primary-light: #CCFBF1;
+  --color-primary-very-light: #F0FDFA;
+
+  /* Semantic status override variables */
+  --color-success: #16A34A;
+  --color-success-dark: #15803D;
+  --color-success-light: #DCFCE7;
+  --color-success-bg: #F0FDF4;
+
+  --color-warning: #F59E0B;
+  --color-warning-dark: #B45309;
+  --color-warning-light: #FEF3C7;
+  --color-warning-bg: #FFFBEB;
+
+  --color-danger: #DC2626;
+  --color-danger-dark: #B91C1C;
+  --color-danger-light: #FEE2E2;
+  --color-danger-bg: #FEF2F2;
+
+  --color-danger-expired: #991B1B;
+
+  --color-info: #0891B2;
+  --color-info-light: #CFFAFE;
+  --color-info-bg: #ECFEFF;
+}
+
+.dark {
+  /* Brand Teal dark theme variants */
+  --color-primary: #14B8A6;
+  --color-primary-hover: #2DD4BF;
+  --color-primary-active: #0D9488;
+  --color-primary-light: #115E59;
+  --color-primary-very-light: #134E4A;
+
+  /* Dark mode semantic status colors */
+  --color-success: #22C55E;
+  --color-success-dark: #16A34A;
+  --color-success-light: #14532D;
+  --color-success-bg: #052E16;
+
+  --color-warning: #FBBF24;
+  --color-warning-dark: #F59E0B;
+  --color-warning-light: #78350F;
+  --color-warning-bg: #451A03;
+
+  --color-danger: #EF4444;
+  --color-danger-dark: #DC2626;
+  --color-danger-light: #7F1D1D;
+  --color-danger-bg: #450A0A;
+
+  --color-danger-expired: #EF4444;
+
+  --color-info: #22D3EE;
+  --color-info-light: #164E63;
+  --color-info-bg: #083344;
+}
+
 @theme {
-  --color-primary: #74b9ff;
-  --color-secondary: #81ecec;
+  /* Dynamic brand variables mapped to default blue classes for automatic Teal branding */
+  --color-blue-50: var(--color-primary-very-light);
+  --color-blue-100: var(--color-primary-light);
+  --color-blue-600: var(--color-primary);
+  --color-blue-700: var(--color-primary-hover);
+  --color-blue-800: var(--color-primary-active);
+
+  /* Status overrides */
+  --color-emerald-50: var(--color-success-bg);
+  --color-emerald-100: var(--color-success-light);
+  --color-emerald-500: var(--color-success);
+  --color-emerald-600: var(--color-success-dark);
+  --color-emerald-650: var(--color-success-dark);
+
+  --color-green-50: var(--color-success-bg);
+  --color-green-100: var(--color-success-light);
+  --color-green-600: var(--color-success);
+  --color-green-700: var(--color-success-dark);
+
+  --color-amber-50: var(--color-warning-bg);
+  --color-amber-100: var(--color-warning-light);
+  --color-amber-500: var(--color-warning);
+  --color-amber-600: var(--color-warning-dark);
+  --color-amber-700: var(--color-warning-dark);
+
+  --color-rose-50: var(--color-danger-bg);
+  --color-rose-100: var(--color-danger-light);
+  --color-rose-600: var(--color-danger);
+  --color-rose-650: var(--color-danger-dark);
+  --color-rose-655: var(--color-danger-dark);
+
+  --color-red-50: var(--color-danger-bg);
+  --color-red-100: var(--color-danger-light);
+  --color-red-600: var(--color-danger);
+  --color-red-700: var(--color-danger-expired);
+
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Outfit', sans-serif;
-  
+
   --animate-scanner-laser: scanner-laser 2.2s ease-in-out infinite;
+  --animate-spin-slow: spin 8s linear infinite;
 
   @keyframes scanner-laser {
     0%, 100% {
@@ -23,14 +122,25 @@
 /* Global Base Styles */
 body {
   font-family: var(--font-sans);
-  background-color: #f8fafc; /* Tailwind bg-slate-50 */
-  color: #0f172a; /* Tailwind text-slate-900 */
+  background-color: #F8FAFC; /* Slate-50 default light background */
+  color: #0F172A; /* Slate-900 default light text */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.dark body {
+  background-color: #020617; /* Dark slate background */
+  color: #F8FAFC; /* Light gray text */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
 }
